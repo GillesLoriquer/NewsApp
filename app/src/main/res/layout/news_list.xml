@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ce fichier XML défini la façon dont chaque nouvelle sera présentée. Il est commun à toute
+les actualités -->
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/cardview_image"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="5dp" />
+
+        <TextView
+            android:id="@+id/cardview_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/cardview_image"
+            android:text="Titre" />
+
+        <TextView
+            android:id="@+id/cardview_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_title"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/cardview_image"
+            android:text="Description" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardview_description"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/cardview_image"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cardview_source_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="1"
+                android:text="Source"
+                android:textAlignment="textStart" />
+
+            <TextView
+                android:id="@+id/cardview_publishedat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:text="Date"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
