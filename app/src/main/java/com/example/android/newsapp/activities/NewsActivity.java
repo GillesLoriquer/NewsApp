@@ -1,10 +1,15 @@
-package com.example.android.newsapp;
+package com.example.android.newsapp.activities;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.android.newsapp.Fragments.FragmentBusiness;
+import com.example.android.newsapp.Fragments.FragmentSport;
+import com.example.android.newsapp.R;
+import com.example.android.newsapp.adapters.ViewPagerAdapter;
 
 public class NewsActivity extends AppCompatActivity {
 
@@ -29,7 +34,6 @@ public class NewsActivity extends AppCompatActivity {
 
         // On attache le viewPagerAdapter au widget ViewPager
         viewPager.setAdapter(viewPagerAdapter);
-
 
         // On récupère le widget TabLayout
         TabLayout tabLayout = findViewById(R.id.tablayout);

@@ -1,4 +1,4 @@
-package com.example.android.newsapp;
+package com.example.android.newsapp.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,27 +9,39 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.newsapp.Models.Article;
+import com.example.android.newsapp.R;
+
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RowViewHolder> {
+public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.RowViewHolder> {
     /** Attributs privés */
-    // Attribut qui contient le contexte du fragment où se créer le NewsAdapter
+    // Attribut qui contient le contexte du fragment où se créer l'ArticleAdapter
     private Context mContext;
-    // Attribut qui contient la liste des news à afficher
-    private List<News> mNews;
-    // Attribut qui contient le listener attaché à ce NewsAdapter
+    // Attribut qui contient la liste des articles à afficher
+    private List<Article> mArticles;
+    // Attribut qui contient le listener attaché à ce ArticleAdapter
     private OnItemClickListener mOnItemClickListener;
 
     /** Constructeurs */
-    public NewsAdapter() { }
+    public ArticleAdapter() { }
 
-    public NewsAdapter(Context mContext, List<News> mNews) {
+    public ArticleAdapter(Context mContext, List<Article> mArticles) {
         this.mContext = mContext;
-        this.mNews = mNews;
+        this.mArticles = mArticles;
+    }
+
+    /** Mutateurs */
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
+    }
+
+    public void setmArticles(List<Article> mArticles) {
+        this.mArticles = mArticles;
     }
 
     /** Classe interne définissant le RowViewHolder */
-    // Chaque ViewHolder se charge d'un seul item de news
+    // Chaque ViewHolder se charge d'un seul item d'Article
     public class RowViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         /** Attributs privés */
         private TextView mSourceName;
@@ -59,7 +71,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RowViewHolder>
     }
 
     /** Interface interne */
-    // Interface permettant la création d'un custom listener sur chaque item de news.
+    // Interface permettant la création d'un custom listener sur chaque item d'Article.
     // Lors de sa création dans chaque fragment la méthode onClick devra être redéfinie
     // pour spécifier l'action à réaliser sur un item du RecyclerView
     public interface OnItemClickListener {
@@ -67,14 +79,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RowViewHolder>
     }
 
     /** Methodes */
-    // Appelée lorsque que la RecyclerView à besoin d'un ViewHolder représentant un item de news
+    // Appelée lorsque que la RecyclerView à besoin d'un ViewHolder représentant un item d'Article
     // Ce nouveau ViewHolder sera utilisé pour afficher les items de l'adapter en utilisant
     // onBindViewHolder
     @NonNull
     @Override
     public RowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(
-                R.layout.news_list,
+                R.layout.article_list,
                 parent,
                 false);
 
@@ -82,30 +94,40 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.RowViewHolder>
     }
 
     // Cette méthode permet de binder les datas avec l'affichage.
-    // L'objet retourné par onCreateViewHolder contient les différentes vues d'un item news
+    // L'objet retourné par onCreateViewHolder contient les différentes vues d'un item Article
     // (titre, nom de la source etc.) et il est question ici de leur affecter une valeur avec la
     // position passée en paramètre
     @Override
     public void onBindViewHolder(@NonNull RowViewHolder holder, int position) {
-        News currentNews = mNews.get(position);
+        Article currentArticle = mArticles.get(position);
 
-        holder.mSourceName.setText(currentNews.getmSourceName());
-        holder.mTitle.setText(currentNews.getmTitle());
-        holder.mDescription.setText(currentNews.getmDescription());
-        holder.mPublishedAt.setText(currentNews.getmPublishedAt());
-        //holder.mImage.setText(currentNews.getmURLToImage());
+        holder.mSourceName.setText(currentArticle.getmSource().getmName());
+        holder.mTitle.setText(currentArticle.getmTitle());
+        holder.mDescription.setText(currentArticle.getmDescription());
+        holder.mPublishedAt.setText(currentArticle.getmPublishedAt());
     }
 
-    // Retourne le nombre de d'item (news) contenu dans la liste mNews
+    // Retourne le nombre de d'item (Article) contenu dans la liste mArticles
     @Override
     public int getItemCount() {
-        return mNews.size();
+        return mArticles.size();
     }
 
     // Cette méthode, appelée par chaque fragment, permet de setter un listener de type
-    // NewsAdapter.onItemClickListener (interface interne définie dans cette classe) sur cet
+    // ArticleAdapter.onItemClickListener (interface interne définie dans cette classe) sur cet
     // adapter
     public void setOnClickListener(OnItemClickListener onItemClickListener) {
         this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public void clear() {
+        mArticles.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Article> articles) {
+        mArticles.clear();
+        mArticles.addAll(articles);
+        notifyDataSetChanged();
     }
 }
