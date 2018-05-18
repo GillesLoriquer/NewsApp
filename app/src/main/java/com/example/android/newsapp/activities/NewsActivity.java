@@ -6,10 +6,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.android.newsapp.Fragments.FragmentBusiness;
-import com.example.android.newsapp.Fragments.FragmentSport;
+import com.example.android.newsapp.fragments.FragmentBusiness;
 import com.example.android.newsapp.R;
 import com.example.android.newsapp.adapters.ViewPagerAdapter;
+import com.example.android.newsapp.fragments.FragmentEntertainment;
+import com.example.android.newsapp.fragments.FragmentSports;
 
 public class NewsActivity extends AppCompatActivity {
 
@@ -30,7 +31,8 @@ public class NewsActivity extends AppCompatActivity {
 
         // Ajout manuel des différents fragments
         viewPagerAdapter.addFragment(new FragmentBusiness(), "Business");
-        viewPagerAdapter.addFragment(new FragmentSport(), "Sport");
+        viewPagerAdapter.addFragment(new FragmentEntertainment(), "Entertainment");
+        viewPagerAdapter.addFragment(new FragmentSports(), "Sports");
 
         // On attache le viewPagerAdapter au widget ViewPager
         viewPager.setAdapter(viewPagerAdapter);
@@ -46,6 +48,7 @@ public class NewsActivity extends AppCompatActivity {
         // second paramètre passé lors de la création du fragment
         tabLayout.getTabAt(0).setText(viewPagerAdapter.getTitle(0));
         tabLayout.getTabAt(1).setText(viewPagerAdapter.getTitle(1));
+        tabLayout.getTabAt(2).setText(viewPagerAdapter.getTitle(2));
 
         // On supprimer ici l'ombre générée par l'action bar
         ActionBar actionBar = getSupportActionBar();

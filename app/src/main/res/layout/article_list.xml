@@ -5,62 +5,70 @@ les actualités -->
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp">
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="match_parent" >
 
         <ImageView
             android:id="@+id/cardview_image"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="5dp" />
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
 
         <TextView
             android:id="@+id/cardview_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/cardview_image"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="5dp"
+            android:layout_below="@id/cardview_image"
             android:text="Titre" />
 
         <TextView
             android:id="@+id/cardview_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_below="@id/cardview_title"
             android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/cardview_image"
             android:text="Description" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cardview_description"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/cardview_image"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/cardview_source_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="2dp"
                 android:layout_weight="1"
                 android:text="Source"
+                android:textStyle="bold"
+                android:textColor="@color/text_detail"
                 android:textAlignment="textStart" />
 
             <TextView
                 android:id="@+id/cardview_publishedat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:text="Date"
+                android:textColor="@color/text_detail"
                 android:textAlignment="textEnd" />
         </LinearLayout>
 

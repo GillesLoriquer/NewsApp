@@ -1,4 +1,4 @@
-package com.example.android.newsapp.Models;
+package com.example.android.newsapp.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

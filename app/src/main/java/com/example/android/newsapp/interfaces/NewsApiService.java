@@ -1,6 +1,6 @@
 package com.example.android.newsapp.interfaces;
 
-import com.example.android.newsapp.Models.News;
+import com.example.android.newsapp.models.News;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

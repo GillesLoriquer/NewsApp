@@ -1,22 +1,23 @@
-package com.example.android.newsapp.Fragments;
+package com.example.android.newsapp.fragments;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.android.newsapp.Models.Article;
-import com.example.android.newsapp.Models.News;
 import com.example.android.newsapp.R;
 import com.example.android.newsapp.adapters.ArticleAdapter;
 import com.example.android.newsapp.interfaces.NewsApiService;
+import com.example.android.newsapp.models.Article;
+import com.example.android.newsapp.models.News;
 import com.example.android.newsapp.network.RetrofitClientInstance;
 
 import java.util.ArrayList;
@@ -25,8 +26,10 @@ import java.util.List;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
-public class FragmentBusiness extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FragmentEntertainment extends Fragment {
     /** Attributs privés */
     // Attribut contenant une liste d'article
     private List<Article> mArticles = new ArrayList<>();
@@ -36,7 +39,7 @@ public class FragmentBusiness extends Fragment {
 
     /** Constructeurs */
     // Constructeur publique vide requi
-    public FragmentBusiness() { }
+    public FragmentEntertainment() { }
 
     /** Methodes */
     // Cette méthode est réalise la création initiale du fragment
@@ -60,7 +63,7 @@ public class FragmentBusiness extends Fragment {
         // Un objet de type News sera retourné
         retrofit2.Call<News> call = newsApiService.newsForCategory(
                 "fr",
-                "health",
+                "entertainment",
                 "ee166bfd9a324909a2d584246d54b70e");
 
         // Réalisation de l'appel asynchrone (via Callback)
@@ -82,19 +85,19 @@ public class FragmentBusiness extends Fragment {
         });
     }
 
-    // Cette méthode retourne la vue relative au fragment business
+    // Cette méthode retourne la vue relative au fragment_entertainment
     // Elle crée également un ArticleAdapter qu'elle attache à la RecyclerView présente dans ce
     // même fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // On récupère une vue gonflée du layout relative au fragment_business
-        View businessView =
-                inflater.inflate(R.layout.fragment_business, container, false);
+        // On récupère une vue gonflée du layout relative au fragment_entertainment
+        View EntertainmentView =
+                inflater.inflate(R.layout.fragment_entertainment, container, false);
 
         // A partir de cette vue on peut également récupérer la RecyclerView
-        RecyclerView recyclerView = businessView.findViewById(R.id.business_recyclerview);
+        RecyclerView recyclerView = EntertainmentView.findViewById(R.id.entertainment_recyclerview);
 
         // Sur cette RecyclerView on y attache un LayoutManger. Le LayoutManager est responsable
         // du comptage et du positionnement des vues de chaque article dans le RecyclerView. Il
@@ -107,17 +110,19 @@ public class FragmentBusiness extends Fragment {
         mArticleAdapter.setOnClickListener(new ArticleAdapter.OnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Toast.makeText(
-                        getContext(),
-                        mArticles.get(position).getmTitle(),
-                        Toast.LENGTH_SHORT).show();
+                // On récupère l'URL de l'article qui est cliqué
+                String url = mArticles.get(position).getmUrl();
+                // On créer un nouvel intent avec l'URL spécifique à l'article cliqué
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                // Lancement de l'intent
+                startActivity(intent);
             }
         });
 
-        // On attache l'adapter à la RecyclerView du fragment_business
+        // On attache l'adapter à la RecyclerView du fragment_entertainment
         recyclerView.setAdapter(mArticleAdapter);
 
-        // On retourne l'objet contenant la vue relative au fragment_business
-        return businessView;
+        // On retourne l'objet contenant la vue relative au fragment_entertainment
+        return EntertainmentView;
     }
 }

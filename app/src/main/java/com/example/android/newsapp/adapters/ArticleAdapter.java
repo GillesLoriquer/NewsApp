@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.newsapp.Models.Article;
+import com.example.android.newsapp.models.Article;
 import com.example.android.newsapp.R;
+import com.example.android.newsapp.utils.Utils;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -104,7 +106,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.RowViewH
         holder.mSourceName.setText(currentArticle.getmSource().getmName());
         holder.mTitle.setText(currentArticle.getmTitle());
         holder.mDescription.setText(currentArticle.getmDescription());
-        holder.mPublishedAt.setText(currentArticle.getmPublishedAt());
+        holder.mPublishedAt.setText(Utils.getDate(currentArticle.getmPublishedAt()));
+        Picasso.get().load(currentArticle.getmUrlToImage())
+                .placeholder(R.drawable.ic_no_image)
+                .fit()
+                .centerCrop()
+                .into(holder.mImage);
     }
 
     // Retourne le nombre de d'item (Article) contenu dans la liste mArticles
